@@ -142,5 +142,45 @@ public class Main
 
         // Eample #6 Entering grades. We use the sentinel pattern 0-100 is a valid grade so -1 is the sentinel
 
+        done = false; // Needs to be false or the loop will terminate after one pass
+        int grade = 0;
+        int totalGrades = 0;
+        int numOfGrades = 0;
+        double averageGrade = 0.0;
+
+        do {
+            // Prompt for input:
+            System.out.print("Enter grade [0-100 or -1 to quit: ");
+            if (in.hasNextint())
+            {
+                grade = in.nextInt();
+                in.nextLine(); // Clear the newline from the buffer
+
+                if (grade == -1)
+                    done = true;
+                else
+                {
+                    if (grade >= 0 && grade <= 100)  // if grade is in the legal range
+                    {
+                        // add to the total
+                        totalGrades += grade;
+                        // increment the counter
+                        numberOfGrades++;
+                    }
+                    else  // illegal grade!
+                    {
+                        System.out.println("You entered an illegal grade: " + grade);
+                        System.out.println("Grades must be [0 - 100]. ");
+                        System.out.println("Skipping this input, enter it again.");
+                    }
+                }
+            }
+            else  //  got a bad number
+            {
+                trash = in.nextLine();
+                System.out.println("You must enter a valid grade not: " + trash + "\n");
+            }
+
+        }while (!done); // we loop until this is set to True by the test
     }
 }
